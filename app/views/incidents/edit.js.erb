@@ -1,0 +1,5 @@
+
+jQuery(function($){
+  $('#map_info').html("<%= escape_javascript render(partial: 'edit', locals: {incident: @incident}) %>")
+});
+

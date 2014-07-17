@@ -1,0 +1,4 @@
+jQuery(function($){
+  $('#map_info').html("<%= escape_javascript render(partial: 'show', locals: {incident: @incident}) %>")
+});
+

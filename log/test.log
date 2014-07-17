@@ -1,0 +1,97 @@
+  [1m[36m (133.0ms)[0m  [1mCREATE TABLE "incidents" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "mountain" varchar(255), "latitude" decimal, "longitude" decimal, "when" datetime, "title" varchar(255), "description" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (154.5ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (143.6ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (132.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140710123012')
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mFixture Delete (0.1ms)[0m  [1mDELETE FROM "incidents"[0m
+  [1m[35mFixture Insert (0.1ms)[0m  INSERT INTO "incidents" ("mountain", "latitude", "longitude", "when", "title", "description", "created_at", "updated_at", "id") VALUES ('MyString', 9.99, 9.99, '2014-07-10 18:00:12.000000', 'MyString', 'MyText', '2014-07-17 13:48:49', '2014-07-17 13:48:49', 980190962)
+  [1m[36mFixture Insert (0.1ms)[0m  [1mINSERT INTO "incidents" ("mountain", "latitude", "longitude", "when", "title", "description", "created_at", "updated_at", "id") VALUES ('MyString', 9.99, 9.99, '2014-07-10 18:00:12.000000', 'MyString', 'MyText', '2014-07-17 13:48:49', '2014-07-17 13:48:49', 298486374)[0m
+  [1m[35m (120.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+IncidentsControllerTest: test_should_create_incident
+----------------------------------------------------
+  [1m[35mIncident Load (0.3ms)[0m  SELECT  "incidents".* FROM "incidents"  WHERE "incidents"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "incidents"[0m
+Processing by IncidentsController#create as HTML
+  Parameters: {"incident"=>{"description"=>"MyText", "latitude"=>"9.99", "longitude"=>"9.99", "mountain"=>"MyString", "title"=>"MyString", "when"=>"2014-07-10 18:00:12 UTC"}}
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "incidents" ("created_at", "description", "latitude", "longitude", "mountain", "title", "updated_at", "when") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-07-17 13:48:50.123372"], ["description", "MyText"], ["latitude", 9.99], ["longitude", 9.99], ["mountain", "MyString"], ["title", "MyString"], ["updated_at", "2014-07-17 13:48:50.123372"], ["when", "2014-07-10 18:00:12.000000"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Completed 406 Not Acceptable in 8ms
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+-----------------------------------------------------
+IncidentsControllerTest: test_should_destroy_incident
+-----------------------------------------------------
+  [1m[36mIncident Load (0.1ms)[0m  [1mSELECT  "incidents".* FROM "incidents"  WHERE "incidents"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "incidents"
+Processing by IncidentsController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mIncident Load (0.1ms)[0m  [1mSELECT  "incidents".* FROM "incidents"  WHERE "incidents"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM "incidents" WHERE "incidents"."id" = ?[0m  [["id", 980190962]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/incidents
+Completed 302 Found in 2ms (ActiveRecord: 0.3ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "incidents"[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+---------------------------------------------
+IncidentsControllerTest: test_should_get_edit
+---------------------------------------------
+  [1m[35mIncident Load (0.1ms)[0m  SELECT  "incidents".* FROM "incidents"  WHERE "incidents"."id" = ? LIMIT 1  [["id", 980190962]]
+Processing by IncidentsController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mIncident Load (0.0ms)[0m  [1mSELECT  "incidents".* FROM "incidents"  WHERE "incidents"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35mIncident Load (0.0ms)[0m  SELECT  "incidents".* FROM "incidents"  WHERE "incidents"."id" = ? LIMIT 1  [["id", 980190962]]
+  Rendered incidents/_form.html.haml (18.6ms)
+Completed 200 OK in 862ms (Views: 861.0ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+----------------------------------------------
+IncidentsControllerTest: test_should_get_index
+----------------------------------------------
+  [1m[36mIncident Load (0.1ms)[0m  [1mSELECT  "incidents".* FROM "incidents"  WHERE "incidents"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Processing by IncidentsController#index as HTML
+  Rendered incidents/_map.html.erb (1.6ms)
+Completed 200 OK in 5ms (Views: 5.1ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+--------------------------------------------
+IncidentsControllerTest: test_should_get_new
+--------------------------------------------
+  [1m[35mIncident Load (0.1ms)[0m  SELECT  "incidents".* FROM "incidents"  WHERE "incidents"."id" = ? LIMIT 1  [["id", 980190962]]
+Processing by IncidentsController#new as HTML
+  Rendered incidents/_part.html.haml (9.5ms)
+  Rendered incidents/_new.html.haml (12.5ms)
+Completed 200 OK in 14ms (Views: 13.3ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+--------------------------------------------------
+IncidentsControllerTest: test_should_show_incident
+--------------------------------------------------
+  [1m[36mIncident Load (0.1ms)[0m  [1mSELECT  "incidents".* FROM "incidents"  WHERE "incidents"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+Processing by IncidentsController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[35mIncident Load (0.1ms)[0m  SELECT  "incidents".* FROM "incidents"  WHERE "incidents"."id" = ? LIMIT 1  [["id", 980190962]]
+  [1m[36mIncident Load (0.0ms)[0m  [1mSELECT  "incidents".* FROM "incidents"  WHERE "incidents"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  Rendered incidents/_show.html.haml (3.3ms)
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+----------------------------------------------------
+IncidentsControllerTest: test_should_update_incident
+----------------------------------------------------
+  [1m[35mIncident Load (0.1ms)[0m  SELECT  "incidents".* FROM "incidents"  WHERE "incidents"."id" = ? LIMIT 1  [["id", 980190962]]
+Processing by IncidentsController#update as HTML
+  Parameters: {"incident"=>{"description"=>"MyText", "latitude"=>"9.99", "longitude"=>"9.99", "mountain"=>"MyString", "title"=>"MyString", "when"=>"2014-07-10 18:00:12 UTC"}, "id"=>"980190962"}
+  [1m[36mIncident Load (0.1ms)[0m  [1mSELECT  "incidents".* FROM "incidents"  WHERE "incidents"."id" = ? LIMIT 1[0m  [["id", 980190962]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/incidents/980190962
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
